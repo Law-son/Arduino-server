@@ -21,8 +21,8 @@ class MailServices {
         }
 
         const myMessage = `Your Ecowatch reading for the day\n
-            Carbon Monoxide Reading: ${coReadings}\n
-            Smoke Reading: ${smokeReadings}\n
+            Carbon Dioxide Value: ${coReadings}\n
+            Methane Value: ${smokeReadings}\n
             Time: ${time}\n
             Date: ${date}\n
             Charges: ${charges} Cedis\n
