@@ -35,10 +35,10 @@ class MailServices {
                 template_id: templateId,
                 user_id: userId,
                 template_params: {
-                    to_email: 'eratechnologies@gmail.com',
+                    to_email: 'eratechnologiess@gmail.com',
                     from_name: "Ecowatch",
                     to_name: 'Ecowatch Admin',
-                    reply_to: 'eratechnologies@gmail.com',
+                    reply_to: 'eratechnologiess@gmail.com',
                     subject: 'Ecowatch Daily Readings',
                     message: myMessage,
                 },
