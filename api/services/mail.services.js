@@ -20,7 +20,7 @@ class MailServices {
             charges += Math.floor(((smokeReadings - threshold) / threshold) * 100) * conversionRate;
         }
 
-        const myMessage = `Good day Ecowatch user,\nYour Ecowatch reading for the day\n
+        const myMessage = `Your Ecowatch reading for the day\n
             Carbon Monoxide Reading: ${coReadings}\n
             Smoke Reading: ${smokeReadings}\n
             Time: ${time}\n
@@ -35,10 +35,10 @@ class MailServices {
                 template_id: templateId,
                 user_id: userId,
                 template_params: {
-                    to_email: 'buabassahlawson@gmail.com',
+                    to_email: 'eratechnologies@gmail.com',
                     from_name: "Ecowatch",
                     to_name: 'Ecowatch Admin',
-                    reply_to: 'buabassah@gmail.com',
+                    reply_to: 'eratechnologies@gmail.com',
                     subject: 'Ecowatch Daily Readings',
                     message: myMessage,
                 },
