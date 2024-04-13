@@ -9,14 +9,15 @@ class MailServices {
     static async sendEmail(coReadings, smokeReadings, time, date) {
         const url = 'https://api.emailjs.com/api/v1.0/email/send';
         const threshold = 400;
+        const conversionRate = 0.5; // Conversion rate from percentage to cedis
         let charges = 0;
 
         // Calculate charges based on the percentage by which each value exceeds the threshold
         if (coReadings > threshold) {
-            charges += Math.floor(((coReadings - threshold) / threshold) * 100);
+            charges += Math.floor(((coReadings - threshold) / threshold) * 100) * conversionRate;
         }
         if (smokeReadings > threshold) {
-            charges += Math.floor(((smokeReadings - threshold) / threshold) * 100);
+            charges += Math.floor(((smokeReadings - threshold) / threshold) * 100) * conversionRate;
         }
 
         const myMessage = `Good day Ecowatch user,\nYour Ecowatch reading for the day\n
@@ -24,8 +25,8 @@ class MailServices {
             Smoke Reading: ${smokeReadings}\n
             Time: ${time}\n
             Date: ${date}\n
-            Charges: ${charges}%\n
-            Charges: University of Mines and Technology, SRID%\n
+            Charges: ${charges} Cedis\n
+            Charges: University of Mines and Technology, SRID\n
             \nThank You`;
 
         try {
