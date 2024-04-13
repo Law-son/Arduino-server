@@ -26,7 +26,7 @@ class MailServices {
             Time: ${time}\n
             Date: ${date}\n
             Charges: ${charges} Cedis\n
-            Charges: University of Mines and Technology, SRID\n
+            Location: University of Mines and Technology, SRID\n
             \nThank You`;
 
         try {
