@@ -35,8 +35,8 @@ class MailServices {
         const smokeIntensity = getIntensity(smokeReadings);
 
         const myMessage = `Daily EcoWatch Reading (2 hours Interval)\n
-            Carbon Dioxide: ${coReadings}\n
-            Carbon Monoxide: ${smokeReadings}\n
+            Carbon Dioxide: ${coReadings}mg/m3\n
+            Carbon Monoxide: ${smokeReadings}mg/m3\n
             Intensity of emission (CO2): ${coIntensity}\n
             Intensity of emission (CO): ${smokeIntensity}\n
             Time: ${time}\n
