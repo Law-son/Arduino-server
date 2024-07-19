@@ -10,23 +10,39 @@ class MailServices {
         const url = 'https://api.emailjs.com/api/v1.0/email/send';
         const threshold = 400;
         const conversionRate = 0.5; // Conversion rate from percentage to cedis
-        let charges = 0;
 
-        // Calculate charges based on the percentage by which each value exceeds the threshold
+        // Initialize charges with base calculation
+        let charges = (Math.floor(coReadings / 100) * 10) + (Math.floor(smokeReadings / 100) * 10);
+
+        // Calculate additional charges based on the percentage by which each value exceeds the threshold
         if (coReadings > threshold) {
-            charges += Math.floor(((coReadings - threshold) / threshold) * 100) * conversionRate;
+            charges += Math.floor(((coReadings - threshold) / threshold) * 100) * conversionRate + 100;
         }
         if (smokeReadings > threshold) {
-            charges += Math.floor(((smokeReadings - threshold) / threshold) * 100) * conversionRate;
+            charges += Math.floor(((smokeReadings - threshold) / threshold) * 100) * conversionRate + 100;
         }
 
-        const myMessage = `Your Ecowatch reading for the day\n
-            Carbon Dioxide Value: ${coReadings}\n
-            Methane Value: ${smokeReadings}\n
+        console.log(charges);
+
+        const getIntensity = (reading) => {
+            if (reading >= 0 && reading <= 150) return 'Low';
+            if (reading >= 151 && reading <= 300) return 'Medium';
+            if (reading >= 301 && reading <= 399) return 'High';
+            if (reading >= 400) return 'Dangerous';
+        };
+
+        const coIntensity = getIntensity(coReadings);
+        const smokeIntensity = getIntensity(smokeReadings);
+
+        const myMessage = `Daily EcoWatch Reading (2 hours Interval)\n
+            Carbon Dioxide: ${coReadings}\n
+            Carbon Monoxide: ${smokeReadings}\n
+            Intensity of emission (CO2): ${coIntensity}\n
+            Intensity of emission (CO): ${smokeIntensity}\n
             Time: ${time}\n
             Date: ${date}\n
             Charges: ${charges} Cedis\n
-            Location: University of Mines and Technology, SRID\n
+            Location: University of Mines and Technology, Tarkwa
             \nThank You`;
 
         try {
@@ -55,6 +71,5 @@ class MailServices {
         }
     }
 }
-
 
 module.exports = MailServices;
