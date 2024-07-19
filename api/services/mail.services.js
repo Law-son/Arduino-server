@@ -10,28 +10,23 @@ class MailServices {
         const url = 'https://api.emailjs.com/api/v1.0/email/send';
         const threshold = 400;
         const conversionRate = 0.5; // Conversion rate from percentage to cedis
+        let charges = 0;
 
-        // Initialize charges with base calculation
-        let charges = (Math.floor(coReadings / 100) * 10) + (Math.floor(smokeReadings / 100) * 10);
-
-        // Calculate additional charges based on the percentage by which each value exceeds the threshold
+        // Calculate charges based on the percentage by which each value exceeds the threshold
         if (coReadings > threshold) {
-            charges += Math.floor(((coReadings - threshold) / threshold) * 100) * conversionRate + 100;
+            charges += Math.floor(((coReadings - threshold) / threshold) * 100) * conversionRate;
         }
         if (smokeReadings > threshold) {
-            charges += Math.floor(((smokeReadings - threshold) / threshold) * 100) * conversionRate + 100;
+            charges += Math.floor(((smokeReadings - threshold) / threshold) * 100) * conversionRate;
         }
 
-        console.log(charges);
-
         const myMessage = `Your Ecowatch reading for the day\n
-            Carbon Dioxide value: ${coReadings}\n
-            Nitrogen Dioxide value: ${smokeReadings}\n
+            Carbon Dioxide Value: ${coReadings}\n
+            Methane Value: ${smokeReadings}\n
             Time: ${time}\n
             Date: ${date}\n
             Charges: ${charges} Cedis\n
-            Company: University of Mines and Technology, Tarkwa
-            Location: Tarkwa\n
+            Location: University of Mines and Technology, SRID\n
             \nThank You`;
 
         try {
@@ -60,5 +55,6 @@ class MailServices {
         }
     }
 }
+
 
 module.exports = MailServices;
